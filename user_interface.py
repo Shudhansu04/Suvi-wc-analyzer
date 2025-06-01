@@ -342,17 +342,18 @@ if uploaded_file is not None:
         emoji_df.columns = ['Emoji', 'Frequency']
 
         col1, col2 = st.columns(2)
-
+        
         with col1:
             st.dataframe(emoji_df, height=350)
+        
         with col2:
-            emoji_font = font_manager.FontProperties(fname="C:/Windows/Fonts/seguiemj.ttf")
-            sizes = emoji_df['Frequency']
-            labels = emoji_df['Emoji']
+            sizes = emoji_df['Frequency'].head(20)
+            labels = emoji_df['Emoji'].head(20)
+            
             fig, ax = plt.subplots()
-            ax.pie(sizes.head(20), labels=labels.head(20), autopct='%1.1f%%', startangle=90,
-                       textprops={'fontproperties': emoji_font})
-            ax.set_title("Top 20 Emoji Usage", fontproperties=emoji_font)
+            ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+            ax.set_title("Top 20 Emoji Usage")
+            
             st.pyplot(fig)
 
     if st.sidebar.button("Download Report"):
