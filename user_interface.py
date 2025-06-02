@@ -207,38 +207,38 @@ if uploaded_file is not None:
         user2_df = functions.get_user_data(user2, df)
 
 
-    stats1 = functions.calculate_stats(user1_df)
-    stats2 = functions.calculate_stats(user2_df)
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.header(f"Stats for {user1}")
-        st.write(f"**Messages sent:** {stats1['messages_sent']}")
-        st.write("**Emoji Usage:**")
-        st.dataframe(stats1['emoji_df'])
-        st.write(f"**Average Word Length:** {stats1['avg_word_length']:.2f}")
-        st.write("**Active Hours:**")
-        st.bar_chart(stats1['active_hours'])
-        if stats1['sentiment_counts'] is not None:
-            st.write("**Sentiment Distribution:**")
-            st.bar_chart(stats1['sentiment_counts'])
-        else:
-            st.info("Sentiment data not available")
-
-    with col2:
-        st.header(f"Stats for {user2}")
-        st.write(f"**Messages sent:** {stats2['messages_sent']}")
-        st.write("**Emoji Usage:**")
-        st.dataframe(stats2['emoji_df'])
-        st.write(f"**Average Word Length:** {stats2['avg_word_length']:.2f}")
-        st.write("**Active Hours:**")
-        st.bar_chart(stats2['active_hours'])
-        if stats2['sentiment_counts'] is not None:
-            st.write("**Sentiment Distribution:**")
-            st.bar_chart(stats2['sentiment_counts'])
-        else:
-            st.info("Sentiment data not available")
+        stats1 = functions.calculate_stats(user1_df)
+        stats2 = functions.calculate_stats(user2_df)
+    
+        col1, col2 = st.columns(2)
+    
+        with col1:
+            st.header(f"Stats for {user1}")
+            st.write(f"**Messages sent:** {stats1['messages_sent']}")
+            st.write("**Emoji Usage:**")
+            st.dataframe(stats1['emoji_df'])
+            st.write(f"**Average Word Length:** {stats1['avg_word_length']:.2f}")
+            st.write("**Active Hours:**")
+            st.bar_chart(stats1['active_hours'])
+            if stats1['sentiment_counts'] is not None:
+                st.write("**Sentiment Distribution:**")
+                st.bar_chart(stats1['sentiment_counts'])
+            else:
+                st.info("Sentiment data not available")
+    
+        with col2:
+            st.header(f"Stats for {user2}")
+            st.write(f"**Messages sent:** {stats2['messages_sent']}")
+            st.write("**Emoji Usage:**")
+            st.dataframe(stats2['emoji_df'])
+            st.write(f"**Average Word Length:** {stats2['avg_word_length']:.2f}")
+            st.write("**Active Hours:**")
+            st.bar_chart(stats2['active_hours'])
+            if stats2['sentiment_counts'] is not None:
+                st.write("**Sentiment Distribution:**")
+                st.bar_chart(stats2['sentiment_counts'])
+            else:
+                st.info("Sentiment data not available")
 
     if st.sidebar.button("Analyse"):
 
