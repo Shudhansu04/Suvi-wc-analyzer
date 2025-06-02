@@ -197,7 +197,7 @@ if uploaded_file is not None:
 
     user_list = sorted(df['user'].unique())
 
-    user1 = st.sidebar.selectbox("Select User 1 For Comparison", ['Full Analysis'] + user_list, key='user1')
+    user1 = candidates
     user2 = st.sidebar.selectbox("Select User 2 For Comparison ", ['Full Analysis'] + user_list, index=1 if len(user_list) > 1 else 0,
                                  key='user2')
 
