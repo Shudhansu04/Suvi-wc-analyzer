@@ -10,7 +10,7 @@ st.set_page_config(page_title="WhatsApp Chat Analyzer", layout="wide")
 st.sidebar.title("📱 WhatsApp Chat Analyzer")
 
 # Upload chat and stopwords
-uploaded_file = st.sidebar.file_uploader("Upload chats file in .txt format", type="txt")
+uploaded_file = st.sidebar.file_uploader("Upload your chat file in .txt format", type="txt")
 with open("stopwords.txt", "r", encoding="utf-8") as f:
     stopword_file = f.read().splitlines()
 
