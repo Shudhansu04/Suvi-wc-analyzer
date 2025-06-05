@@ -1,11 +1,13 @@
 import re
 import pandas as pd
+from dateutil import parser
 def preprocess(data):
     pattern = r'\d{1,2}/\d{1,2}/\d{2,4},\s\d{1,2}:\d{2}\s-\s'
     messages = re.split(pattern, data)[1:]
     dates = re.findall(pattern, data)
+    dates = [parser.parse(d.strip(' -'), dayfirst=True) for d in dates]
     df = pd.DataFrame({'user_message': messages, 'message_date': dates})
-    df['message_date'] = pd.to_datetime(df['message_date'], format="%d/%m/%y, %H:%M - ")
+    # df['message_date'] = pd.to_datetime(df['message_date'], format="%d/%m/%Y, %H:%M - ")
     df.rename(columns={'message_date': 'date'}, inplace=True)
 
     users = []

@@ -1,4 +1,3 @@
-# from transformers.utils.import_utils import candidates
 from urlextract import  URLExtract
 extract= URLExtract()
 from wordcloud import WordCloud

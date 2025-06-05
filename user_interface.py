@@ -195,23 +195,25 @@ if uploaded_file is not None:
             """
             st.markdown(chat_bubble, unsafe_allow_html=True)
 
-    user_list = sorted(df['user'].unique())
+    user_list = df['user'].unique().tolist()
+    if 'group_notification' in user_list:
+        user_list.remove('group_notification')
 
     user1 = candidates
     user2 = st.sidebar.selectbox("Select User 2 For Comparison ", ['Full Analysis'] + user_list, index=1 if len(user_list) > 1 else 0,
-                                 key='user2')
+                             key='user2')
+    
 
     if st.sidebar.checkbox("Show User's Comparison"):
         st.title("📊 User's Comparison")
         user1_df = functions.get_user_data(user1, df)
         user2_df = functions.get_user_data(user2, df)
 
-
         stats1 = functions.calculate_stats(user1_df)
         stats2 = functions.calculate_stats(user2_df)
-    
+
         col1, col2 = st.columns(2)
-    
+
         with col1:
             st.header(f"Stats for {user1}")
             st.write(f"**Messages sent:** {stats1['messages_sent']}")
@@ -225,7 +227,7 @@ if uploaded_file is not None:
                 st.bar_chart(stats1['sentiment_counts'])
             else:
                 st.info("Sentiment data not available")
-    
+
         with col2:
             st.header(f"Stats for {user2}")
             st.write(f"**Messages sent:** {stats2['messages_sent']}")
@@ -340,12 +342,12 @@ if uploaded_file is not None:
 
         emoji_df = functions.emoji_calculator(candidates, df)
         emoji_df.columns = ['Emoji', 'Frequency']
-
+#font_manager.FontProperties(fname="C:/Windows/Fonts/seguiemj.ttf") for windows
         col1, col2 = st.columns(2)
-        
+
         with col1:
             st.dataframe(emoji_df, height=350)
-        
+
         with col2:
             sizes = emoji_df['Frequency'].head(20)
             labels = emoji_df['Emoji'].head(20)
@@ -355,7 +357,6 @@ if uploaded_file is not None:
             ax.set_title("Top 20 Emoji Usage")
             
             st.pyplot(fig)
-
     if st.sidebar.button("Download Report"):
         pdf_path = functions.generate_pdf_report(df)
 
