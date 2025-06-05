@@ -7,7 +7,7 @@ def preprocess(data):
     dates = re.findall(pattern, data)
     dates = [parser.parse(d.strip(' -'), dayfirst=True) for d in dates]
     df = pd.DataFrame({'user_message': messages, 'message_date': dates})
-    # df['message_date'] = pd.to_datetime(df['message_date'], format="%d/%m/%Y, %H:%M - ")
+    # df['message_date'] = pd.to_datetime(df['message_date'], format="%d/%m/%Y, %H:%M - ") --- it will work only for 4-digit year formate(%Y)....
     df.rename(columns={'message_date': 'date'}, inplace=True)
 
     users = []
