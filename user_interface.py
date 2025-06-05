@@ -341,7 +341,6 @@ if uploaded_file is not None:
         st.title('Emoji Used')
 
         emoji_df = functions.emoji_calculator(candidates, df)
-        emoji_df.columns = ['Emoji', 'Frequency']
 #font_manager.FontProperties(fname="C:/Windows/Fonts/seguiemj.ttf") for windows
         col1, col2 = st.columns(2)
 
