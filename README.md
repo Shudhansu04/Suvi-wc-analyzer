@@ -9,3 +9,6 @@ NLTK & spaCy,
 scikit-learn,
 gensim (for LDA topic modeling),
 dateutil (for flexible date parsing).
+
+## Live Link
+https://suvi-wc-analyzer-sgbpypassvbdg2c8bddaqh.streamlit.app/
